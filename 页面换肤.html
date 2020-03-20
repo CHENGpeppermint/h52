@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>网页换肤</title>
+    <meta charset="utf-8">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        fieldset {
+            width: 600px;
+            height: 200px;
+            position: absolute;
+            left: 30%;
+        }
+        
+        #div1 {
+            border: 1px solid black;
+            width: 580px;
+            height: 53px;
+            margin: auto;
+            margin-top: 23px;
+        }
+        
+        ul {
+            width: 98%;
+            height: 100px;
+            margin: auto;
+        }
+        
+        li {
+            list-style: none;
+            float: left;
+            border: 0px solid rgb(15, 15, 15);
+            margin: 0 10px;
+            width: 25px;
+            height: 25px;
+            margin-top: 14px;
+        }
+        
+        #div2 {
+            background-color: gray;
+            width: 560px;
+            height: 55px;
+            margin: auto;
+            margin-top: 15px;
+        }
+        
+        #div3 {
+            width: 550px;
+            height: 60px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend style="color:red">
+            <h1>网页换肤</h1>
+        </legend>
+        <div id="div1">
+            <ul id="skin">
+                <li class="skin_0" id="selected" title="灰色"></li>
+                <li class="skin_1" title="紫色"></li>
+                <li class="skin_2" title="粉色"></li>
+                <li class="skin_3" title="天蓝色"></li>
+                <li class="skin_4" title="黄色"></li>
+                <li class="skin_5" title="绿色"></li>
+            </ul>
+        </div>
+
+        <div id="div2" class="skin_0">
+            <div id="div3" class="text">
+                LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。
+            </div>
+
+        </div>
+    </fieldset>
+</body>
+<script>
+    var div2 = document.getElementById('div2');
+    var colors = ['gray', 'purple', 'pink', 'lightblue', 'yellow', 'green'];
+    var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].style.backgroundColor = colors[i];
+        lis[i].index = i;
+        lis[i].onclick = function() {
+            div2.style.backgroundColor = colors[this.index];
+            localStorage.setItem('color', colors[this.index]);
+        }
+        lis.onclick = function() {
+            lis.style.top = -10 + 'px';
+        }
+        window.onload = function() {
+            div2.style.backgroundColor = localStorage.getItem('color');
+        }
+    }
+</script>
+
+</html>
